@@ -1,0 +1,41 @@
+body {
+    font-family: Poppins, sans-serif;
+    background: #f4f6ff;
+    padding: 30px;
+}
+
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: #79b6d2;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+a {
+    color: red;
+    font-weight: bold;
+}
+
+table {
+  width: 100%;
+  font-size: 14px;
+}
+
+.order-card {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
