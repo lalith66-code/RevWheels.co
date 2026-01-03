@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+</head>
+<body>
+
+<div class="container">
+<h2>Payment</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <input name="name" placeholder="Full Name" required>
+    <input name="phone" placeholder="Phone" required>
+    <input name="email" placeholder="Email" required>
+    <input name="address" placeholder="Address" required>
+    <label>Upload Payment Screenshot: <input type="file" name="payment_screenshot" accept="image/*" required></label>
+
+    <h3>Pay via UPI</h3>
+    <img src="/static/upi_qr.png" width="250">
+
+    <br><br>
+    <button class="btn">I Have Paid</button>
+</form>
+</div>
+
+</body>
+</html>
