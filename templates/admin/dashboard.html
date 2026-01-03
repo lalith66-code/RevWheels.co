@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<!-- Add Product Buttons -->
+<div class="add-buttons">
+    <button onclick="showAddForm('hotwheels')">Add Hotwheels Product</button>
+    <button onclick="showAddForm('diecast')">Add Diecast Cars Product</button>
+    <button onclick="showAddForm('rc')">Add RC Cars Product</button>
+</div>
+
+<!-- ================= ADD HOTWHEELS PRODUCT ================= -->
+<h2 data-section="hotwheels" style="display:none">Add Hotwheels Product</h2>
+
+<form method="post" enctype="multipart/form-data" class="add-form" id="hotwheels-form" style="display:none">
+    <input type="hidden" name="category" value="hotwheels">
+    <label>Product Image</label>
+    <input type="file" name="image" accept="image/*" required>
+
+    <label>Product Name</label>
+    <input type="text" name="name" placeholder="Car Name" required>
+
+    <label>Original Price</label>
+    <input type="number" name="price" placeholder="Price" required>
+
+    <label>Offer Price</label>
+    <input type="number" name="offer" placeholder="Offer Price" required>
+
+    <label>Deal / Offer Message</label>
+    <input type="text" name="deal" placeholder="Special deal text">
+
+    <button type="submit">Add Hotwheels Product</button>
+</form>
+
+<!-- ================= ADD DIECAST CARS PRODUCT ================= -->
+<h2 data-section="diecast" style="display:none">Add Diecast Cars Product</h2>
+
+<form method="post" enctype="multipart/form-data" class="add-form" id="diecast-form" style="display:none">
+    <input type="hidden" name="category" value="diecast-cars">
+    <label>Product Image</label>
+    <input type="file" name="image" accept="image/*" required>
+
+    <label>Product Name</label>
+    <input type="text" name="name" placeholder="Car Name" required>
+
+    <label>Original Price</label>
+    <input type="number" name="price" placeholder="Price" required>
+
+    <label>Offer Price</label>
+    <input type="number" name="offer" placeholder="Offer Price" required>
+
+    <label>Deal / Offer Message</label>
+    <input type="text" name="deal" placeholder="Special deal text">
+
+    <button type="submit">Add Diecast Cars Product</button>
+</form>
+
+<!-- ================= ADD RC CARS PRODUCT ================= -->
+<h2 data-section="rc" style="display:none">Add RC Cars Product</h2>
+
+<form method="post" enctype="multipart/form-data" class="add-form" id="rc-form" style="display:none">
+    <input type="hidden" name="category" value="rc-cars">
+    <label>Product Image</label>
+    <input type="file" name="image" accept="image/*" required>
+
+    <label>Product Name</label>
+    <input type="text" name="name" placeholder="Car Name" required>
+
+    <label>Original Price</label>
+    <input type="number" name="price" placeholder="Price" required>
+
+    <label>Offer Price</label>
+    <input type="number" name="offer" placeholder="Offer Price" required>
+
+    <label>Deal / Offer Message</label>
+    <input type="text" name="deal" placeholder="Special deal text">
+
+    <button type="submit">Add RC Cars Product</button>
+</form>
+
+<hr>
+
+<!-- ================= PRODUCT LIST ================= -->
+<h2>Products</h2>
+
+<table class="product-table">
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Offer</th>
+        <th>Deal</th>
+        <th>Action</th>
+    </tr>
+
+    {% for p in products %}
+    <tr>
+        <td>
+            <img src="/static/uploads/{{ p.image }}" width="90">
+        </td>
+        <td>{{ p.name }}</td>
+        <td>₹{{ p.price }}</td>
+        <td>₹{{ p.offer }}</td>
+        <td>{{ p.deal }}</td>
+        <td>
+            <a class="delete-btn" href="/admin/delete/{{ loop.index0 }}">Delete</a>
+            <a href="/admin/edit/{{ loop.index0 }}">Edit</a>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<a class="orders-btn" href="/admin/orders">View Orders</a>
+
+<script>
+function showAddForm(category) {
+    // Hide all forms and headings
+    var forms = ['hotwheels', 'diecast', 'rc'];
+    forms.forEach(function(cat) {
+        var h2 = document.querySelector('h2[data-section="' + cat + '"]');
+        var form = document.getElementById(cat + '-form');
+        if (h2) h2.style.display = 'none';
+        if (form) form.style.display = 'none';
+    });
+    // Show selected
+    var h2 = document.querySelector('h2[data-section="' + category + '"]');
+    var form = document.getElementById(category + '-form');
+    if (h2) h2.style.display = 'block';
+    if (form) form.style.display = 'block';
+}
+</script>
+
+</body>
+</html>

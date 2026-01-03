@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom T-shirt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+</head>
+<body>
+
+<h2>Custom T-shirt</h2>
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <label>Size:</label>
+        <select name="size" required>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>
+        <br><br>
+        <label>Front Image:</label>
+        <input type="file" name="front_image" accept="image/*" required>
+        <br><br>
+        <label>Back Image:</label>
+        <input type="file" name="back_image" accept="image/*" required>
+        <br><br>
+        <label>Quantity:</label>
+        <input type="number" name="qty" min="1" value="1" required>
+        <br><br>
+        <button class="btn">Order Custom T-shirt</button>
+    </form>
+</div>
+
+</body>
+</html>

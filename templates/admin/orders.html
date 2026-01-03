@@ -1,0 +1,197 @@
+<h2 data-section="hotwheels">Hotwheels Orders</h2>
+
+<div id="hotwheels" style="display:none">
+{% for order, idx in hotwheels_orders %}
+<div class="order-card">
+
+  <b>{{ order.name }}</b><br>
+  📞 {{ order.phone }}<br>
+  📧 {{ order.email }}<br>
+  🏠 {{ order.address }}<br><br>
+
+  <b>Items:</b>
+  <ul>
+    {% for item, qty in (order.get("items") or {}).items() %}
+      {% set prod = products[item|int] %}
+      {% if prod.category == "hotwheels" %}
+      <li>{{ prod.name }} × {{ qty }}</li>
+      {% endif %}
+    {% endfor %}
+    {% for item in (order.get("custom_items") or []) %}
+      <li>{{ item.name }} × {{ item.qty }}</li>
+    {% endfor %}
+  </ul>
+
+  <p><b>Total:</b> ₹{{ order.get("total", 0) }}</p>
+  {% if order.get("payment_screenshot") %}
+  <p><b>Payment Screenshot:</b> <img src="/static/uploads/{{ order.payment_screenshot }}" width="100" alt="Payment Proof"></p>
+  {% endif %}
+
+  <form method="post" action="/admin/order/status/{{ idx }}">
+    <select name="status">
+      <option value="Pending" {{ 'selected' if order.status == 'Pending' else '' }}>Pending</option>
+      <option value="Paid" {{ 'selected' if order.status == 'Paid' else '' }}>Paid</option>
+      <option value="Shipped" {{ 'selected' if order.status == 'Shipped' else '' }}>Shipped</option>
+      <option value="Delivered" {{ 'selected' if order.status == 'Delivered' else '' }}>Delivered</option>
+    </select>
+    <button type="submit">Update</button>
+  </form>
+
+  <p><b>Status:</b> {{ order.status }}</p>
+
+</div>
+<hr>
+{% endfor %}
+</div>
+
+<h2 data-section="custom">Custom T-shirt Orders</h2>
+
+<div id="custom" style="display:none">
+{% for order, idx in custom_orders %}
+<div class="order-card">
+
+  <b>{{ order.name }}</b><br>
+  📞 {{ order.phone }}<br>
+  📧 {{ order.email }}<br>
+  🏠 {{ order.address }}<br><br>
+
+  <b>Items:</b>
+  <ul>
+    {% for item, qty in (order.get("items") or {}).items() %}
+      {% set prod = products[item|int] %}
+      <li>{{ prod.name }} × {{ qty }}</li>
+    {% endfor %}
+    {% for item in (order.get("custom_items") or []) %}
+      <li>{{ item.name }} × {{ item.qty }}</li>
+    {% endfor %}
+  </ul>
+
+  <p><b>Total:</b> ₹{{ order.get("total", 0) }}</p>
+  {% if order.get("payment_screenshot") %}
+  <p><b>Payment Screenshot:</b> <img src="/static/uploads/{{ order.payment_screenshot }}" width="100" alt="Payment Proof"></p>
+  {% endif %}
+
+  <form method="post" action="/admin/order/status/{{ idx }}">
+    <select name="status">
+      <option value="Pending" {{ 'selected' if order.status == 'Pending' else '' }}>Pending</option>
+      <option value="Paid" {{ 'selected' if order.status == 'Paid' else '' }}>Paid</option>
+      <option value="Shipped" {{ 'selected' if order.status == 'Shipped' else '' }}>Shipped</option>
+      <option value="Delivered" {{ 'selected' if order.status == 'Delivered' else '' }}>Delivered</option>
+    </select>
+    <button type="submit">Update</button>
+  </form>
+
+  <p><b>Status:</b> {{ order.status }}</p>
+
+</div>
+<hr>
+{% endfor %}
+</div>
+
+<h2 data-section="diecast">Diecast Cars Orders</h2>
+
+<div id="diecast" style="display:none">
+{% for order, idx in diecast_orders %}
+<div class="order-card">
+
+  <b>{{ order.name }}</b><br>
+  📞 {{ order.phone }}<br>
+  📧 {{ order.email }}<br>
+  🏠 {{ order.address }}<br><br>
+
+  <b>Items:</b>
+  <ul>
+    {% for item, qty in (order.get("items") or {}).items() %}
+      {% set prod = products[item|int] %}
+      {% if prod.category == "diecast-cars" %}
+      <li>{{ prod.name }} × {{ qty }}</li>
+      {% endif %}
+    {% endfor %}
+    {% for item in (order.get("custom_items") or []) %}
+      <li>{{ item.name }} × {{ item.qty }}</li>
+    {% endfor %}
+  </ul>
+
+  <p><b>Total:</b> ₹{{ order.get("total", 0) }}</p>
+  {% if order.get("payment_screenshot") %}
+  <p><b>Payment Screenshot:</b> <img src="/static/uploads/{{ order.payment_screenshot }}" width="100" alt="Payment Proof"></p>
+  {% endif %}
+
+  <form method="post" action="/admin/order/status/{{ idx }}">
+    <select name="status">
+      <option value="Pending" {{ 'selected' if order.status == 'Pending' else '' }}>Pending</option>
+      <option value="Paid" {{ 'selected' if order.status == 'Paid' else '' }}>Paid</option>
+      <option value="Shipped" {{ 'selected' if order.status == 'Shipped' else '' }}>Shipped</option>
+      <option value="Delivered" {{ 'selected' if order.status == 'Delivered' else '' }}>Delivered</option>
+    </select>
+    <button type="submit">Update</button>
+  </form>
+
+  <p><b>Status:</b> {{ order.status }}</p>
+
+</div>
+<hr>
+{% endfor %}
+</div>
+
+<h2 data-section="rc">RC Cars Orders</h2>
+
+<div id="rc" style="display:none">
+{% for order, idx in rc_orders %}
+<div class="order-card">
+
+  <b>{{ order.name }}</b><br>
+  📞 {{ order.phone }}<br>
+  📧 {{ order.email }}<br>
+  🏠 {{ order.address }}<br><br>
+
+  <b>Items:</b>
+  <ul>
+    {% for item, qty in (order.get("items") or {}).items() %}
+      {% set prod = products[item|int] %}
+      {% if prod.category == "rc-cars" %}
+      <li>{{ prod.name }} × {{ qty }}</li>
+      {% endif %}
+    {% endfor %}
+    {% for item in (order.get("custom_items") or []) %}
+      <li>{{ item.name }} × {{ item.qty }}</li>
+    {% endfor %}
+  </ul>
+
+  <p><b>Total:</b> ₹{{ order.get("total", 0) }}</p>
+  {% if order.get("payment_screenshot") %}
+  <p><b>Payment Screenshot:</b> <img src="/static/uploads/{{ order.payment_screenshot }}" width="100" alt="Payment Proof"></p>
+  {% endif %}
+
+  <form method="post" action="/admin/order/status/{{ idx }}">
+    <select name="status">
+      <option value="Pending" {{ 'selected' if order.status == 'Pending' else '' }}>Pending</option>
+      <option value="Paid" {{ 'selected' if order.status == 'Paid' else '' }}>Paid</option>
+      <option value="Shipped" {{ 'selected' if order.status == 'Shipped' else '' }}>Shipped</option>
+      <option value="Delivered" {{ 'selected' if order.status == 'Delivered' else '' }}>Delivered</option>
+    </select>
+    <button type="submit">Update</button>
+  </form>
+
+  <p><b>Status:</b> {{ order.status }}</p>
+
+</div>
+<hr>
+{% endfor %}
+</div>
+
+<script>
+function showSection() {
+  var hash = window.location.hash.substring(1);
+  var sections = ['hotwheels', 'custom', 'diecast', 'rc'];
+  sections.forEach(function(sec) {
+    var div = document.getElementById(sec);
+    var h2 = document.querySelector('h2[data-section="' + sec + '"]');
+    if (div) div.style.display = (sec === hash) ? 'block' : 'none';
+    if (h2) h2.style.display = (sec === hash) ? 'block' : 'none';
+  });
+}
+window.onload = showSection;
+window.onhashchange = showSection;
+</script>
+

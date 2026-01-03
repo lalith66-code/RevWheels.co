@@ -1,0 +1,26 @@
+[
+  {
+    "category": "hotwheels",
+    "name": "civic custom",
+    "image": "civic_custom.png",
+    "price": "699",
+    "offer": "599",
+    "deal": "buy now "
+  },
+  {
+    "category": "diecast-cars",
+    "name": "findme622",
+    "image": "civic_custom.png",
+    "price": "698",
+    "offer": "599",
+    "deal": "buy now "
+  },
+  {
+    "category": "rc-cars",
+    "name": "owner",
+    "image": "civic_custom.png",
+    "price": "699",
+    "offer": "599",
+    "deal": "buy now "
+  }
+]

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotwheels</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+</head>
+<body>
+
+<h2>Hotwheels</h2>
+
+<div class="products">
+{% for p, idx in products %}
+    <div class="card">
+        <img src="/static/uploads/{{ p.image }}" width="150">
+        <h3>{{ p.name }}</h3>
+        <p><strike>₹{{ p.price }}</strike> ₹{{ p.offer }}</p>
+        <p>{{ p.deal }}</p>
+
+        <form method="post" action="/cart/add/{{ idx }}">
+            <button>Add to Cart</button>
+        </form>
+
+        {% if is_admin %}
+        <a href="/admin/edit/{{ idx }}">Edit</a>
+        <a href="/admin/delete/{{ idx }}">Delete</a>
+        {% endif %}
+    </div>
+{% endfor %}
+</div>
+
+<a href="/cart" class="floating-cart">🛒</a>
+
+<script>
+if (window.location.search.includes('added')) {
+    alert('Added to cart');
+}
+</script>
+
+</body>
+</html>
